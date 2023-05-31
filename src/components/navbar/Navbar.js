@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "./navbar.css";
-import {useNavigate} from "react-router-dom"
+
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   const [active, setActive] = useState("nav__menu");
-  const navigate = useNavigate ()
+  const navigate = useNavigate();
   const [icon, setIcon] = useState("nav__toggler");
   const navToggle = () => {
     if (active === "nav__menu") {
@@ -48,16 +49,13 @@ function Navbar() {
           </a>
         </li>
         <li className="nav__item">
-          <a href="login" className="nav__link">
+          <a href="login" className="nav__linkss">
             Login
           </a>
         </li>
-        <button onClick={() => navigate("/signup")}>Signup </button>
-        {/* <li className="nav__item">
-          <a href="contact" className="nav__link">
-            Sign up
-          </a>
-        </li> */}
+        <button className="btn" onClick={() => navigate("/signup")}>
+          Signup{" "}
+        </button>
       </ul>
       <div onClick={navToggle} className={icon}>
         <div className="line1"></div>

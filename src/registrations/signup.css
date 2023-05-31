@@ -1,91 +1,99 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
-/* * > * {
-    font-family: "Poppins", cursive;
-    margin: 0;
-    justify-content: center;
-} */
-
-body{
-  background: #fff;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* .App {
-  height: 100vh;
+.hero {
   display: flex;
-  justify-content: center;
   align-items: center;
-  text-align: center;
-} */
-
-.register{
-  max-width: 978px;
-  width: 100vw;
-  display:flex;
-  /* margin-left: 25vh; */
-  border: 1px solid #e9ecef;
-  border-radius: 5px;
-  /* box-shadow: 1px 3px 10px #e9ecef; */
-  background-color: white;
-}
-
-.register span{
-  color: #adb5bd;
-}
-
-#form{
-  max-width: 320px;
-  width: 100vw;
-  margin: 2em auto;
   justify-content: center;
-  text-align: center;
+  flex-direction: column;
+  margin-top: 40px;
 }
 
-#form >  input, .btn{
-  border: 1px solid #e9ecef;
-  padding: .9em 1em;
+.hero h1 {
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+  margin-bottom: 40px;
 }
 
-#form > input:focus{
+.signup-box {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 90%;
+  max-width: 800px;
+  background: #fff;
+}
+
+.left-box {
+  padding: 26.9px;
+  background: rgb(0, 33, 65);
+  flex-basis: 50%;
+  flex-grow: 1;
+  color: #fff;
+}
+.right-box {
+  padding: 20rem;
+  flex-basis: 50%;
+
+  background-image: url("../assets/ubukode1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.input-box {
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 50;
+  margin: 10px 0;
+  border: 1px solid #fff;
   outline: none;
+  color: #fff;
+  font-size: 12px;
+  background: transparent;
+}
+::placeholder {
+  color: #fff;
+  font-style: italic;
+  font-weight: 14px;
 }
 
-#form > .btn{
-  background-color: #003049;
-  color: #e9ecef;
-  font-size: 1em;
+.left-box label {
+  font-size: 14px;
+}
+label {
+  margin-top: 30px;
+}
+.left-box button {
+  width: 100%;
+  background: #fff;
+  padding: 10px;
+  border: 0;
+  outline: none;
+  font-size: 16px;
+  margin-top: 20px;
   cursor: pointer;
 }
 
-.flex{
-  display: flex;
-  gap: 1em;
+.left-box button:hover {
+  font-weight: 500;
+  background: #000;
+  color: #fff;
 }
 
-.flex-col{
-  flex-direction: column;
+.left-box button span {
+  display: inline-block;
+  width: 0px;
+  overflow: hidden;
+  transition: width 0.5s;
 }
 
-.register .col-1{
-  margin: auto;
-  padding: 3em 0;
+.left-box button:hover span {
+  width: 30px;
 }
-
-.register .col-2 img{
-  width: 480px;
-  height: 100%;
-  object-fit: cover;
-  align-self: flex-end;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  display: none;
-}
-
-@media screen and (min-width: 860px)  {
-  .register .col-2 img{
-    display: initial;
-  }
-}
+.brand {
+  text-align: center;
+} */

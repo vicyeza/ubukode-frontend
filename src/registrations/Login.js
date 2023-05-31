@@ -1,134 +1,102 @@
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import "./login.css";
 
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        ubukode-RIC-House
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
-// TODO remove, this demo shouldn't need to reset the theme.
-
-const defaultTheme = createTheme();
-
-export default function SignInSide() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   return (
-    
-    <ThemeProvider theme={defaultTheme}>
-      
+    <div className="hero">
+      {/* <h1>Create An Account</h1> */}
+      <div className="signup-box">
+        <div className="left-box">
+          <h2>Welcome Back!!! </h2>
+          <h2>
+            To <span style={{ color: "rgb(126, 146, 109)" }}>Ubukode</span>
+          </h2>
+          <form
+            action="#"
+            onSubmit={handleSubmit(async (data) => {
+              console.log(data);
+              try {
+                setLoading(true);
+                const response = await axios.post(
+                  "http://localhost:9090/api/user/login",
+                  data
+                );
 
-      <Grid container component="main" sx={{blockSize:'100vh'}}>
-        <CssBaseline />
-        <Grid
-          item
-          xs={false}
-          sm={4}
-          md={7}
-          sx={{
-            backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
-            backgroundRepeat: 'no-repeat',
-            backgroundColor: (t) =>
-              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-          <Box
-            sx={{
-              my: 8,
-              mx: 4,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
+                toast.success("Logged In successfully");
+                setLoading(false);
+                console.log(response.data.data);
+                localStorage.setItem("token", response.data.data.token);
+
+                navigate("/dashboard");
+              } catch (error) {
+                setLoading(false);
+                toast.error(error.response.data.error);
+              }
+            })}
           >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              {/* <LockOutlinedIcon /> */}
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign in
-            </Typography>
-            <h3>Hi!! Welcome back to Ubukode</h3>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                autoFocus
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Sign In
-              </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link href="SignUp" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
-              </Grid>
-              <Copyright sx={{ mt: 5 }} />
-            </Box>
-          </Box>
-        </Grid>
-      </Grid>
-    </ThemeProvider>
+            <input
+              className="input-box"
+              type="email"
+              placeholder="Enter Email"
+              name="email"
+              {...register("email", { required: "please enter your email" })}
+            />
+            <p className="errors"> {errors.email?.message}</p>
+            <input
+              className="input-box"
+              type="password"
+              name="password"
+              placeholder="Enter a password"
+              {...register("password", {
+                required: "please enter password",
+                minLength: {
+                  value: 8,
+                  message: "password must be at least 8 characters",
+                },
+              })}
+            />
+            <p className="errors"> {errors.password?.message} </p>
+            <div className="app">
+              <input type="checkbox" style={{ marginRight: 10 }} />
+              <label htmlFor="">Remeber me</label>
+            </div>
+            <button type="Submit">
+              {loading && (
+                <>
+                  <div className="grid-1 my-auto h-5 w-5 mx-3 border-t-transparent border-solid animate-spin rounded-full border-white border-4 "></div>
+                  <div className="grid-2 my-auto -mx-1"> </div>
+                </>
+              )}
+              LOGIN <span>&#x27f6;</span>
+            </button>
+            <ToastContainer />
+            <p style={{ marginTop: 10 }}>
+              Don't have Account <Link to="/signup">Sign up</Link>
+            </p>
+          </form>
+          <h6 style={{ marginTop: 10, textAlign: "center" }}>
+            Ubukode &copy; Ric-house
+          </h6>
+        </div>
+        <div className="right-box"></div>
+      </div>
+    </div>
   );
-}
+};
+
+export default Login;

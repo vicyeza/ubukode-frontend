@@ -1,9 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=MuseoModerno&family=Overpass:wght@400;600&family=Poppins:wght@400;600&family=Roboto:wght@300;400;500;700&display=swap");
 * {
-  font-family: "MuseoModerno", cursive;
-  /* font-family: "Overpass", sans-serif; */
-  /* font-family: "Poppins", sans-serif; */
-  /* font-family: "Roboto", sans-serif; */
+  font-family: "Poppins", sans-serif;
 }
 
 *,
@@ -20,7 +17,6 @@ body {
 }
 li {
   list-style: none;
-  
 }
 a {
   text-decoration: none;
@@ -38,8 +34,7 @@ a {
   text-transform: uppercase;
   padding-left: 5rem;
 }
-.nav__item{
-  
+.nav__item {
 }
 .nav__menu {
   display: flex;
@@ -95,23 +90,22 @@ a {
 }
 
 .btn {
-  border: none;
+  font-size: 1.8rem;
   background: transparent;
-  padding: 6px 16px;
-  font-size: 1.1rem;
   color: #fff;
   border-radius: 5px;
-  transition: 0.3s all ease-out;
+  padding: 6px 16px;
   cursor: pointer;
-  margin-right: 1.5rem;
-  background-color: var(--primary);
+  border: none;
+  background-color: rgb(105, 121, 90);
   font-family: "Roboto Condensed", sans-serif;
 }
 .btn:hover {
-  color: #fcb900;
-  background: #fff;
-  padding: 6px 18px;
+  background-color: rgb(126, 146, 109);
+  color: #fff;
+
+  /* padding: 6px 18px;
   transition: all 0.3s ease-out;
   border-radius: 4px;
-  border: 2px solid var(--primary);
+  border: 2px solid var(--primary); */
 }
