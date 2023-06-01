@@ -19,7 +19,6 @@ const Login = () => {
 
   return (
     <div className="hero">
-      {/* <h1>Create An Account</h1> */}
       <div className="signup-box">
         <div className="left-box">
           <h2>Welcome Back!!! </h2>
@@ -42,7 +41,7 @@ const Login = () => {
                 console.log(response.data.data);
                 localStorage.setItem("token", response.data.data.token);
 
-                navigate("/dashboard");
+                navigate("/dashboards");
               } catch (error) {
                 setLoading(false);
                 toast.error(error.response.data.error);
@@ -75,7 +74,7 @@ const Login = () => {
               <input type="checkbox" style={{ marginRight: 10 }} />
               <label htmlFor="">Remeber me</label>
             </div>
-            <button type="Submit">
+            <button type="Submit" >
               {loading && (
                 <>
                   <div className="grid-1 my-auto h-5 w-5 mx-3 border-t-transparent border-solid animate-spin rounded-full border-white border-4 "></div>
@@ -89,7 +88,7 @@ const Login = () => {
               Don't have Account <Link to="/signup">Sign up</Link>
             </p>
           </form>
-          <h6 style={{ marginTop: 10, textAlign: "center" }}>
+          <h6 style={{ marginTop: 30, textAlign: "center" }}>
             Ubukode &copy; Ric-house
           </h6>
         </div>

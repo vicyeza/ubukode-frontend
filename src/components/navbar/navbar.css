@@ -34,8 +34,7 @@ a {
   text-transform: uppercase;
   padding-left: 5rem;
 }
-.nav__item {
-}
+
 .nav__menu {
   display: flex;
   align-items: center;
@@ -77,6 +76,32 @@ a {
   transform: translateX(0%);
 }
 
+.nav__brand {
+  color: #fff;
+  justify-self: start;
+  margin-left: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  align-items: center;
+  font-size: 3rem;
+  font-weight: bold;
+  font-family: "Roboto Condensed", sans-serif;
+}
+.nav__brand:hover {
+  color: skyblue;
+}
+.nav__link {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: bold;
+}
+.nav__link:hover {
+  color: skyblue;
+  border-radius: 4px;
+  transition: all 0.2s ease-out;
+}
 /* Toggle Icon Animation */
 
 .toggle .line1 {

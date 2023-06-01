@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-// import Link from "react-router-dom"
-// import "./signup.css";
 import { Link } from "react-router-dom";
 import Axios from "axios";
 import { toast } from "react-toastify";
+import "./login.css";
 
 const Signup = () => {
   const [values, setValues] = useState({
@@ -33,7 +32,7 @@ const Signup = () => {
       console.log("Application Saved Successfully");
       toast.success("User Registered Successfully", {
         position: "top-right",
-        autoClose: 2000,
+        autoClose: 1000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,

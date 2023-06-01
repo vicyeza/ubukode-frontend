@@ -38,8 +38,16 @@ export default function AccountMenu() {
           paddingRight: "5rem",
         }}
       >
+        <h2
+          style={{
+            color: "rgb(0, 33, 65)",
+            marginRight: "25rem",
+          }}
+        >
+          Welcome to Ubukode Dashboard
+        </h2>
         <Typography sx={{ minWidth: 100 }}>
-          <b>{user?.role}</b> ~ {user?.names}
+          <b>{user?.role}</b> {user?.names}
         </Typography>
         <Tooltip title="Account settings">
           <IconButton
@@ -54,6 +62,7 @@ export default function AccountMenu() {
           </IconButton>
         </Tooltip>
       </Card>
+
       <Menu
         anchorEl={anchorEl}
         id="account-menu"

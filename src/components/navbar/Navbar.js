@@ -19,7 +19,7 @@ function Navbar() {
   };
   return (
     <nav className="nav">
-      <a href="#gg" className="nav__brand">
+      <a href="/" className="nav__brand">
         Ubukode
       </a>
       <ul className={active}>
