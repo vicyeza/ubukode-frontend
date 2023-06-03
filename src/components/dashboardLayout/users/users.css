@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  font-family: "Quicksand";
+}
+
+h2 {
+  justify-content: center;
+  align-items: center;
+  display: block;
+  /* margin-block-start: 1.33em; */
+  /* margin-block-end: 0; */
+  margin-inline-start: 3rem;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+.col-2 {
+  margin-left: 12rem;
+}
+.headers {
+  font-family: "Poppins", sans-serif;
+}
+/* Search Box and H2*/
+/*-------------------------*/
+.row {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  align-self: center;
+}
+
+.tables {
+  justify-content: center;
+  width: 98%;
+  height: 50vh;
+  display: flex;
+  font-family: "Poppins", sans-serif;
+}
+.content:nth-child(odd) {
+  background-color: rgb(232, 239, 232);
+}
+table {
+  margin: 1rem;
+  /* border: 1px solid forestgreen; */
+  width: 100%;
+  height: 2px;
+}
+
+th {
+  border-bottom: 1px solid black;
+  color: aliceblue;
+  background-color: rgb(26, 171, 123);
+}
+/* td{
+    justify-content: center;
+    text-align: center;
+} */
+
+.search-bar-container {
+  /* padding-top: 2vh; */
+  width: 30%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 2rem;
+  /* min-width: 200px; */
+}
+
+.delete {
+  color: rgb(220, 63, 63);
+  cursor: pointer;
+  font-weight: bold;
+  margin-right: 3px;
+}
+.edit {
+  color: rgb(237, 237, 98);
+  cursor: pointer;
+  font-weight: bold;
+}
+.delete-btn {
+  color: #b95753;
+  margin-left: 10px;
+}
+
+.edit-btn {
+  color: rgb(76, 110, 76);
+  margin-left: 10px;
+}
+
+.UserBtn {
+  /* background: rgb(0, 33, 65); */
+  background-color: rgb(26, 171, 123);
+  color: #fff;
+  font-weight: bolder;
+  font-size: 14px;
+  padding: 1rem;
+  border: none;
+  border-radius: 5px;
+}
+.UserBtn:hover{
+  background-color: rgb(52, 181, 138);
+}

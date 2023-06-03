@@ -1,25 +1,21 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./login.css";
 
 const Login = () => {
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
-
   return (
     <div className="hero">
-      {/* <h1>Create An Account</h1> */}
       <div className="signup-box">
         <div className="left-box">
           <h2>Welcome Back!!! </h2>
@@ -37,15 +33,15 @@ const Login = () => {
                   data
                 );
 
-                toast.success("Logged In successfully");
                 setLoading(false);
                 console.log(response.data.data);
                 localStorage.setItem("token", response.data.data.token);
 
-                navigate("/dashboard");
+                navigate("/dashboards");
               } catch (error) {
-                setLoading(false);
-                toast.error(error.response.data.error);
+                setTimeout(() => {
+                  setLoading(false);
+                }, 2000);
               }
             })}
           >
@@ -75,21 +71,21 @@ const Login = () => {
               <input type="checkbox" style={{ marginRight: 10 }} />
               <label htmlFor="">Remeber me</label>
             </div>
-            <button type="Submit">
-              {loading && (
-                <>
-                  <div className="grid-1 my-auto h-5 w-5 mx-3 border-t-transparent border-solid animate-spin rounded-full border-white border-4 "></div>
-                  <div className="grid-2 my-auto -mx-1"> </div>
-                </>
-              )}
-              LOGIN <span>&#x27f6;</span>
-            </button>
-            <ToastContainer />
+            {loading ? (
+              <button type="Submit">
+                Loading <span>&#x27f6;</span>
+              </button>
+            ) : (
+              <button type="Submit">
+                LOGIN <span>&#x27f6;</span>
+              </button>
+            )}
+
             <p style={{ marginTop: 10 }}>
               Don't have Account <Link to="/signup">Sign up</Link>
             </p>
           </form>
-          <h6 style={{ marginTop: 10, textAlign: "center" }}>
+          <h6 style={{ marginTop: 30, textAlign: "center" }}>
             Ubukode &copy; Ric-house
           </h6>
         </div>

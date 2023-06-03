@@ -9,8 +9,8 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  /* background: rgb(2, 36, 71); */
   margin-top: 40px;
+  height: 65vh;
 }
 
 .hero h1 {
@@ -25,7 +25,8 @@
   width: 90%;
   max-width: 800px;
   background: #fff;
-  /* border: 2px solid rgb(255, 255, 255); */
+  
+  
 }
 
 .left-box {
@@ -35,6 +36,7 @@
   width: 50%;
   flex-grow: 1;
   color: #fff;
+  
 }
 .right-box {
   padding: 20rem;
@@ -57,7 +59,6 @@
 }
 ::placeholder {
   color: #fff;
-  /* font-style: italic; */
   font-weight: 16px;
 }
 
@@ -99,5 +100,5 @@ label {
 }
 
 .errors {
-  color: red;
+  color: rgb(255, 47, 0);
 }
