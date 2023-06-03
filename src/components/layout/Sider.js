@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Card,
@@ -19,41 +19,60 @@ const sideMenus = [
   {
     title: "Dashboard",
     icon: <DashboardIcon />,
-    path: "/dashboard",
-  },
-  {
-    title: "Products",
-    icon: <ProductionQuantityLimitsIcon />,
-    path: "/product",
-  },
-  {
-    title: "Purchases",
-    icon: <MonetizationOnIcon />,
-    path: "/purchase",
-  },
-  {
-    title: "Sales",
-    icon: <ReceiptIcon />,
-    path: "/sales",
+    path: "/dashboards",
   },
   {
     title: "Users",
+    icon: <ProductionQuantityLimitsIcon />,
+    path: "/users",
+  },
+  {
+    title: "Analysis",
+    icon: <ProductionQuantityLimitsIcon />,
+    path: "/analyisis",
+  },
+  {
+    title: "Public Pages",
+    icon: <MonetizationOnIcon />,
+    path: "/pages",
+  },
+  {
+    title: "MetaData",
+    icon: <ReceiptIcon />,
+    path: "/metadata",
+  },
+  {
+    title: "Datas",
     icon: <GroupIcon />,
-    path: "/user",
+    path: "/datas",
+  },
+  {
+    path: "/newUser",
   },
 ];
 const Component = (props) => {
   const navigate = useNavigate();
-  const [selectedItemIndex,setSelectedItemIndex] = useState(0)
+  const [selectedItemIndex, setSelectedItemIndex] = useState(0);
   return (
-    <Card sx={{ minHeight: "100vh" }}>
-      <Paper sx={{ minHeight: "3rem" }}></Paper>
+    <Card
+      style={{
+        color: "rgb(0, 33, 65)",
+      }}
+      sx={{ minHeight: "100vh" }}
+    >
+      <Paper sx={{ minHeight: "1rem" }}></Paper>
       <MenuList>
-        <Stack spacing={4} justifyContent="center">
-          {sideMenus?.map((menu,index) => (
-            <MenuItem onClick={() => {setSelectedItemIndex(index);navigate(menu.path)}} selected={selectedItemIndex === index}>
+        <Stack spacing={1} justifyContent="center">
+          {sideMenus?.map((menu, index) => (
+            <MenuItem
+              onClick={() => {
+                setSelectedItemIndex(index);
+                navigate(menu.path);
+              }}
+              selected={selectedItemIndex === index}
+            >
               <ListItemIcon>{menu.icon}</ListItemIcon>
-              <Typography variant="inherit">{menu.title}</Typography>
+              <Typography style={{ fontSize: 16 }}>{menu.title}</Typography>
             </MenuItem>
           ))}
         </Stack>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Chart from "../../components/chart/Chart";
 import FeaturedInfo from "../../components/featuredInfo/FeaturedInfo";
 import "./home.css";
@@ -17,3 +18,12 @@ export default function Home() {
     </div>
   );
 }
+=======
+import React from "react";
+
+const Home = () => {
+  return <div>Home</div>;
+};
+
+export default Home;
+>>>>>>> b7a43cf (User Dashboard)
