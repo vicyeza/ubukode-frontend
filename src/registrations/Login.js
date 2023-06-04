@@ -14,6 +14,30 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
+  const handleLogin = async (data) => {
+    try {
+      setLoading(true);
+      const response = await axios.post(
+        "http://localhost:9090/api/user/login",
+        data
+      );
+
+      setLoading(false);
+      console.log(response.data.data);
+      localStorage.setItem("token", response.data.data.token);
+
+      navigate("/dashboards");
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+      // Check if the error is due to invalid email or password
+      if (error.response && error.response.status === 400) {
+        console.log("Invalid email or password");
+        alert("Invalid email or password"); // Add an alert or display an error message
+      }
+    }
+  };
+
   return (
     <div className="hero">
       <div className="signup-box">
@@ -22,29 +46,7 @@ const Login = () => {
           <h2>
             To <span style={{ color: "rgb(126, 146, 109)" }}>Ubukode</span>
           </h2>
-          <form
-            action="#"
-            onSubmit={handleSubmit(async (data) => {
-              console.log(data);
-              try {
-                setLoading(true);
-                const response = await axios.post(
-                  "http://localhost:9090/api/user/login",
-                  data
-                );
-
-                setLoading(false);
-                console.log(response.data.data);
-                localStorage.setItem("token", response.data.data.token);
-
-                navigate("/dashboards");
-              } catch (error) {
-                setTimeout(() => {
-                  setLoading(false);
-                }, 2000);
-              }
-            })}
-          >
+          <form action="#" onSubmit={handleSubmit(handleLogin)}>
             <input
               className="input-box"
               type="email"
@@ -69,20 +71,20 @@ const Login = () => {
             <p className="errors"> {errors.password?.message} </p>
             <div className="app">
               <input type="checkbox" style={{ marginRight: 10 }} />
-              <label htmlFor="">Remeber me</label>
+              <label htmlFor="">Remember me</label>
             </div>
             {loading ? (
-              <button type="Submit">
-                Loading <span>&#x27f6;</span>
+              <button type="submit">
+                Loading... <span>&#x27f6;</span>
               </button>
             ) : (
-              <button type="Submit">
+              <button type="submit">
                 LOGIN <span>&#x27f6;</span>
               </button>
             )}
 
             <p style={{ marginTop: 10 }}>
-              Don't have Account <Link to="/signup">Sign up</Link>
+              Don't have an account? <Link to="/signup">Sign up</Link>
             </p>
           </form>
           <h6 style={{ marginTop: 30, textAlign: "center" }}>
