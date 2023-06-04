@@ -14,59 +14,38 @@ const Signup = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  // const [values, setValues] = useState({
-  //   firstname: "",
-  //   lastname: "",
-  //   email: "",
-  //   password: "",
-  // });
 
-  // HANDLE CHANGES
-  // const handleChange = (event) => {
-  //   setValues({
-  //     ...values,
-  //     [event.target.name]: event.target.value,
-  //   });
-  // };
+  const handleSignUp = async (data) => {
+    try {
+      setLoading(true);
+      const response = await axios.post(
+        "http://localhost:9090/api/user/create",
+        data
+      );
+      toast.success("User Added Successfully", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
 
-  // const registers = (e) => {
-  //   e.preventDefault();
-  //   Axios.post("http://localhost:9090/api/user/create/", {
-  //     firstName: values.firstname,
-  //     lastName: values.lastname,
-  //     email: values.email,
-  //     password: values.password,
-  //   }).then((response) => {
-  //     console.log(response);
-  //     console.log("Application Saved Successfully");
-  //     toast.success("User Registered Successfully", {
-  //       position: "top-right",
-  //       autoClose: 500,
-  //       hideProgressBar: false,
-  //       closeOnClick: true,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //       progress: undefined,
-  //       theme: "colored",
-  //     });
-  //     // Clear the input values
-  //     setValues({
-  //       firstname: "",
-  //       lastname: "",
-  //       email: "",
-  //       password: "",
-  //     });
-  //   });
-  // };
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const data = new FormData(event.currentTarget);
-  //   console.log({
-  //     email: data.get("email"),
-  //     password: data.get("password"),
-  //   });
-  // };
+      setLoading(false);
+      console.log(response.data.data);
+      localStorage.setItem("token", response.data.data.token);
+      navigate("/login");
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+      // Check if the error is due to invalid email or password
+      if (error.response && error.response.status === 400) {
+        console.log("Invalid email or password");
+      }
+    }
+  };
 
   return (
     <div className="hero">
@@ -77,37 +56,12 @@ const Signup = () => {
           <h2>
             To <span style={{ color: "rgb(126, 146, 109)" }}>Ubukode</span>
           </h2>
-          <form
-            action="#"
-            onSubmit={handleSubmit(async (data) => {
-              try {
-                setLoading(true);
-                await axios.post("http://localhost:9090/api/user/create", data);
-                toast.success("User Added Successfully", {
-                  position: "top-right",
-                  autoClose: 1000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                  theme: "colored",
-                });
-                setLoading(false);
-                navigate("/login");
-              } catch (err) {
-                setLoading(false);
-                toast.error(err.response.data.error);
-              }
-            })}
-          >
+          <form action="#" onSubmit={handleSubmit(handleSignUp)}>
             <input
               className="input-box"
               type="text"
               name="firstname"
               placeholder="Enter first Name"
-              // value={values.firstname}
-              // onChange={handleChange}
               {...register("firstName", {
                 required: "please enter your First name",
               })}
@@ -118,8 +72,6 @@ const Signup = () => {
               type="text"
               name="lastname"
               placeholder="Enter Last Name"
-              // value={values.lastname}
-              // onChange={handleChange}
               {...register("lastName", {
                 required: "please enter your Last name",
               })}
@@ -130,8 +82,6 @@ const Signup = () => {
               type="email"
               name="email"
               placeholder="Enter Email"
-              // value={values.email}
-              // onChange={handleChange}
               {...register("email", { required: "please enter your email" })}
             />
             <p className="errors"> {errors.email?.message}</p>
@@ -140,8 +90,6 @@ const Signup = () => {
               type="password"
               name="password"
               placeholder="Enter a password"
-              // value={values.password}
-              // onChange={handleChange}
               {...register("password", {
                 required: "please enter password",
                 minLength: {
@@ -153,7 +101,7 @@ const Signup = () => {
             <p className="errors"> {errors.password?.message}</p>
             {loading ? (
               <button type="Submit">
-                Loading <span>&#x27f6;</span>
+                Loading... <span>&#x27f6;</span>
               </button>
             ) : (
               <button type="Submit">
