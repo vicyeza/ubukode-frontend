@@ -26,7 +26,7 @@ const Login = () => {
       console.log(response.data.data);
       localStorage.setItem("token", response.data.data.token);
 
-      navigate("/dashboards");
+      navigate("/users");
     } catch (error) {
       setLoading(false);
       console.log(error);
